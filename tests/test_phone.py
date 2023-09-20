@@ -19,3 +19,7 @@ def test_add():
     assert Phone.__add__(phone, phone1) == 30
     notitem = NotItem("Тетрадь", 10, 150)
     assert Phone.__add__(phone, notitem) == "Складывать можно только объекты Phone и дочерние от них."
+
+def test_number_of_sims():
+    phone = Phone("Смартфон", 10000, 20, 2)
+    assert phone.number_of_sim == 2
