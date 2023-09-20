@@ -83,3 +83,8 @@ class Item:
         else:
             number = int(str_number)
             return number
+
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        return "Складывать можно только объекты Item и дочерние от них."
