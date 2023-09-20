@@ -33,3 +33,19 @@ def test_repr():
 def test_str():
     item = Item("Смартфон", 10000, 20)
     assert Item.__str__(item) == 'Смартфон'
+
+
+class NotItem:
+    """класс для провеки сложения"""
+    def __init__(self, name, price, quantity : int):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+def test_add():
+    item = Item("Смартфон", 10000, 20)
+    item1 = Item("Айфон", 70000, 10)
+    assert Item.__add__(item, item1) == 30
+    notitem = NotItem("Тетрадь", 10, 150)
+    assert Item.__add__(item, notitem) == "Складывать можно только объекты Item и дочерние от них."
+
