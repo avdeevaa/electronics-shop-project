@@ -16,10 +16,26 @@ def test_name():
     item.name = 'СуперСмартфон'
     assert item.name == 'СуперСмарт'
 
+from src.item import InstantiateCSVError
 def test_instantiate_from_csv():
     file_name = 'src/items.csv'
     Item.instantiate_from_csv(file_name)
     assert len(Item.all) == 8 # потому что он собирает и те предыдущие экземпляры(3 + 5 из файла)
+
+def test_instantiate_from_csv():
+    # тесты для исключений
+    file_name1 = 'homework-6/item3.csv'
+
+    try:
+        Item.instantiate_from_csv(file_name1)
+    except FileNotFoundError as e:
+        assert str(e) == f"Отсутствует файл {file_name1}"
+
+    file_name2 = 'homework-6/items.csv'
+    try:
+        Item.instantiate_from_csv(file_name2)
+    except InstantiateCSVError as e:
+        assert str(e) == 'Файл item.csv поврежден.'
 
 def test_string_to_number():
     assert Item.string_to_number('5') == 5
